@@ -1,0 +1,148 @@
+.user-form {
+    width: 25%;
+}
+
+#avatar {
+    border-radius: 10px;
+}
+
+#avatar:hover {
+    cursor: pointer;
+}
+
+body {
+    background-color: #292929;
+    color: white;
+}
+
+.chat-bar {
+    bottom: 0;
+    position: fixed;
+    background-color: black;
+    width: 60%;
+    padding: 10px;
+    border: 1px solid darkslategray;
+}
+
+.chat-bar form input[type="text"] {
+    width: 75%;
+    float: left;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid transparent;
+}
+
+.chat-bar form input[type="submit"] {
+    width: 12.5%;
+    float: left;
+    background-color: transparent;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    outline: none;
+}
+
+.chat-bar form input[type="submit"]:focus {
+    border: 1px solid lightslategray;
+}
+
+.column {
+    float: left;
+}
+
+.column.left-side {
+    width: 20%;
+    height: 100%;
+    overflow: auto;
+}
+
+.column.right-side {
+    width: 15%;
+    height: 100%;
+    overflow: auto;
+}
+
+.column.middle {
+    width: 65%;
+    overflow: auto;
+    height: 100%;
+}
+
+html, body {
+    height: 98%;
+}
+
+@media screen and (max-width: 600px) {
+    .column.side, .column.middle {
+        width: 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: lightgray;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.no-outline {
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+}
+
+.no-outline:focus {
+    border: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.dropdown-menu {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+.dropdown-item {
+    color: white;
+    width: 100%;
+}
+
+.invite {
+    border: 1px solid grey;
+    margin: 5px 5px;
+    padding: 8px;
+}
+
+.delete-btn {
+    float: right;
+    background-color: transparent;
+    color: red;
+    border: none;
+    display: none;
+}
+
+.edit-btn {
+    float: right;
+    background-color: transparent;
+    color: lightslategray;
+    border: none;
+    display: none;
+}

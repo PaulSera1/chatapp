@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<%- include('../components/header'); %>
+	</head>
+	<body>
+		<div class="column left-side">
+			<nav class="navbar navbar-dark bg-transparent">
+				<div class="dropdown container">
+					<button style="outline: none;" class="no-outline btn btn-secondary dropdown-toggle" style="background-color: transparent; border: none;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  	Settings
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="<%= channel.ChannelId _%>/invites">Active Invites</a>
+						<a class="dropdown-item" href="/channels/dashboard">Back To Dashboard</a>
+						<a class="dropdown-item" href="/logout">Sign Out</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="column middle">
+			<div id="message-container">
+			<small><code>this is the beginning of the chat</code></small>
+			<% messages.forEach(function(message) { %>
+				<div class="message" id="<%= message.id _%>" data-author="<%= message.author.id _%>" style="padding: 5px;">
+					<p>
+						<span><img class="avatar" src="/assets/<%= message.author.avatar _%>"></span>
+						<% var now = new Date(); %>
+						<span><strong><%= message.author.name _%></strong><span>
+							<% var date = new Date(message.date); %>
+						<span class="message-date">
+							<%= !(now.getDate() == date.getDate() && now.getMonth() == date.getMonth() && now.getYear() == date.getYear())
+								? date.toLocaleDateString()
+								: date.toLocaleTimeString()
+							_%>
+						</span>
+						<% if(message.edited) { %>
+							<small class="edited-msg"><code>(edited)</code></small>
+						<% } %>
+						<% if(message.author.id === user) { %>
+							<button class="delete-btn">Delete</button>
+							<button class="edit-btn">Edit</button>
+						<% } %>
+					</p>
+					<p class="message-content"><%= message.content _%></p>
+				</div>
+			<% }); %>
+			</div>
+			<div class="chat-bar">
+				<span id="editing-bar" style="width: 12.5%; float: left;">
+					&nbsp;
+				</span>
+				<form id='message-form'>
+					<input class="input" type="text" />
+					<input class="submit" type="submit" value="send" />
+				</form>
+			</div>
+		</div>
+		<div class="column right-side">
+			<% users.forEach(function(user) { %>
+				<div style="padding: 8px;">
+					<span>
+						<img class="avatar" src="/assets/<%= user.avatar _%>">
+					</span>
+					<span><%= user.name _%></span>
+				</div>
+			<% }); %>
+		</div>
+		<script type="text/javascript">
+			var currentUser = JSON.parse(`<%- JSON.stringify(user); %>`);
+			var channel = JSON.parse(`<%- JSON.stringify(channel); %>`);
+			var messages = JSON.parse(`<%- JSON.stringify(messages); %>`);
+			var $message = JSON.parse(`<%- JSON.stringify(toMessage); %>`);
+		</script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="./../../../js/home.js"></script>
+	</body>
+</html>

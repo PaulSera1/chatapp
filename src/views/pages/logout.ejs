@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../components/header') %>
+    </head>
+    <body>
+        <script>
+            $(window).ready(function() {
+                window.localStorage.clear();
+                window.location.href = '/';
+            });
+        </script>
+    </body>
+</html>

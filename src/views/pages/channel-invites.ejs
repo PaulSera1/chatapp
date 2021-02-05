@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../components/header') %>
+    </head>
+    <body>
+        <% if(!invites.length) { %>
+            <h1>no invites here</h1>
+        <% } %>
+        <% invites.forEach(function(invite) { %>
+            <div class="invite">
+                <h3><%= invite.code _%></h3>
+                <p><%= invite.ChannelId _%></p>
+                <p><%= invite.name _%></p>
+                <p><button class="btn btn-link" id="copy-link" value="http://localhost:8080/invite/<%= invite.code _%>">Copy Link</button></p>
+            </div>
+        <% }); %>
+        <script>
+            $(window).ready(function() {
+                var copied = false;
+                $(document).ready(function() {
+                    $('#copy-link').click(function(event) {
+                        var $temp = $('<div>');
+                        $('body').append($temp);
+                        $temp.attr('contenteditable', true)
+                            .html($(this).val()).select()
+                            .on('focus', function() {
+                                document.execCommand('selectAll', false, null);
+                            }).focus();
+                        document.execCommand('copy');
+                        $temp.remove();
+                        !copied && $(this).after(`<p style="color: white; opacity: 0.3;">link copied</p>`);
+                        copied = true;
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

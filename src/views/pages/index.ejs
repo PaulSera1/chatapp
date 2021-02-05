@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../components/header'); %>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/javascript">
+            var channels = JSON.parse('<%- JSON.stringify(channels); %>');
+            var user = JSON.parse('<%- JSON.stringify(user); %>');
+        </script>
+        <script type="text/babel" src="../js/components/channel.jsx"></script>
+        <script type="text/babel" src="../js/panel.jsx"></script>
+    </body>
+</html>

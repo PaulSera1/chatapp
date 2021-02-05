@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../components/header'); %>
+    </head>
+    <body>
+        <h1>Invite to <%= channel.name _%></h1>
+        <p>with id <%= channel.ChannelId _%></p>
+        <button id="add-channel" class="btn btn-primary">Join Channel</button>
+        <script>
+            $(document).ready(function() {
+                $('#add-channel').click(function(event) {
+                    $.ajax({
+                        url: '\\channels/<%= channel.ChannelId _%>',
+                        type: 'POST',
+                        success: function(response) {
+                            location.href = 'http://localhost:8080/channels/<%= channel.ChannelId _%>';
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
